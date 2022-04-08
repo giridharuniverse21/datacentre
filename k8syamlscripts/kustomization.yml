@@ -1,0 +1,5 @@
+secretGenerator:
+- name: mysecret1
+  literals:
+  - username=mygk2214
+  - password=myfirstsecret

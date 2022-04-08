@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-demo
+  labels:
+    purpose: demonstrate-command1
+env:
+  - name: MESSAGE
+    value: "hello world" 
+    command: ["/bin/echo"]
+    args: ["$(MESSAGE)"]

@@ -31,6 +31,3 @@ sudo systemctl start tomcat
 sudo systemctl stop tomcat
 sudo systemctl restart tomcat
 sudo systemctl enable tomcat
-
-
-

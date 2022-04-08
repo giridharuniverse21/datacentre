@@ -1,0 +1,17 @@
+---
+- name: packages installing through loops
+  hosts: all
+  become: true
+  tasks: 
+    - name: install a software
+      apt: 
+       name: "{{item}}"
+       state: present
+       upadate_cache: yes
+      with_items:
+       - git
+       - apache2
+       - tomcat9
+       - default-jdk
+       - tree
+... 

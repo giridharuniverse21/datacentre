@@ -1,0 +1,17 @@
+---
+- name: creating the user and sharing password file
+  hosts: all
+  become: true
+  tasks: 
+    - name: creating user
+      user: 
+        name: giridhar
+        password: gk1234
+        uid: 2235
+        home: /home/
+
+    - name: sharing the password file
+      copy: 
+        src: /etc/passwd
+        dest: /etc/giridhar
+...  

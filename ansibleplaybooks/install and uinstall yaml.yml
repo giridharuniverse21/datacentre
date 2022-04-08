@@ -1,0 +1,11 @@
+---
+- name: install/uninstall/update any software
+  hosts: all
+  become: true
+  tasks: 
+    - name: install/uninstall/update a software
+      apt: 
+       name: "{{a}}"
+       state: "{{b}}"
+       update_cache: "{{c}}"
+...       

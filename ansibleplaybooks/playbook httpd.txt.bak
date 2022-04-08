@@ -1,0 +1,25 @@
+---
+- name: installing the apache2 server and configuring to port 7777
+  hosts: all
+  become: yes
+  tasks:
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: start the apache2 server
+      service:
+        name: apache2
+        state: started
+    - name: change the port 80 to 7777
+      replace:
+        regexp: 80
+        replace: 7777
+        path: /etc/apache2/ports.conf
+      notify: restart apache server
+  handlers:
+    - name: restart apache server
+      service:
+        name: apache2
+        state: restarted

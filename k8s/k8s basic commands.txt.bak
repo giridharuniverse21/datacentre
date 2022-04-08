@@ -1,0 +1,25 @@
+BASIC COMMANDS
+#1 PODS
+1. Command for creating pod 
+   kubectl run nginx1 --image=nginx
+   
+2. command for checking the pod running on which pod across all namespaces
+   kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}"
+3. command for checking on which node, pod is running across all namespaces
+   kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --all-namespaces
+4. How to List All Containers in a Pod in Kubernetes Cluster
+   kubectl describe pods <podname>
+   kubectl get pods [pod-name-here] -n [namespace] -o jsonpath='{.spec.containers[*].name}*
+5. What does the READY column in the output of the kubectl get pods command indicate?
+   While running the 'kubectl get pods' command after deployment, the user finds that only 1/2 containers of each pod are in the READY state. The READY column indicates the readiness of containers in each pod.
+6. Delete the webapp Pod.or any pod 
+   kubectl delete pod webapp or <podname>
+7. create a yaml using command line 
+   kubectl run redis --image redis123 --dry-run=client -o yaml > redis.yaml
+
+#2 REPLICASETS
+1. check no of replicaset
+   kubectk get rs 
+2. check the data of the replicaset
+   kubectl describe rs new-replica-set
+3. 

@@ -1,0 +1,67 @@
+BASIC COMMANDS
+#1 PODS
+1. Command for creating pod 
+   kubectl run nginx1 --image=nginx
+   
+2. command for checking the pod running on which pod across all namespaces
+   kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}"
+3. command for checking on which node, pod is running across all namespaces
+   kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --all-namespaces
+4. How to List All Containers in a Pod in Kubernetes Cluster
+   kubectl describe pods <podname>
+   kubectl get pods [pod-name-here] -n [namespace] -o jsonpath='{.spec.containers[*].name}*
+5. What does the READY column in the output of the kubectl get pods command indicate?
+   While running the 'kubectl get pods' command after deployment, the user finds that only 1/2 containers of each pod are in the READY state. The READY column indicates the readiness of containers in each pod.
+6. Delete the webapp Pod.or any pod 
+   kubectl delete pod webapp or <podname>
+7. create a yaml using command line 
+   kubectl run redis --image redis123 --dry-run=client -o yaml > redis.yaml
+8. edit the existing yaml file 
+   kubectl edit pod/podname -o yaml
+9. creation of pod with labels
+   kubectl run redis --image=redis:alpine --labels="tier=db"
+10.Create a service  to expose the pod application within the cluster on port 6379.
+   kubectl expose pod redis --port=6379 --name=redis-service
+   kubectl expose pod redis --port=6379 --name=redis-service --dry-run=client
+
+
+   
+
+   
+   
+
+
+#2 REPLICASETS
+1. check no of replicaset
+   kubectk get rs 
+2. check the data of the replicaset
+   kubectl describe rs new-replica-set
+3. how to copy default existing replicaset to a yaml file
+   kubectl get replicaset new-replica-set -oyaml >> replica.yaml
+4. replace the existing replicaset and create a new replicaset with yaml file
+   kubectl replace -f replica.yaml --force
+5. edit the existing replicaset
+   kubectl edit replicaset
+6. scaleup/scaledown the existing replicaset 
+   kubectl scale --replicas=5 rs/new-replica-set
+
+
+#3 NAMESPACES 
+1. how to get a pods in particular namespaces
+   kubectl get pods --namespace=examplenamespace
+2. to create a pod in particular namespace
+   kubectl apply -f pod.yaml --namespace=test
+3. To switch your active namespace to the ‘test’ Namespace
+   kubens test
+4. It is possible to get all the pods on the cluster
+   kubectl get pod --all-namespaces -o wide
+5. It is also possible to get all pods on the cluster with a specific label
+   kubectl get pod --all-namespaces -o wide --selector some.specific.pod.label
+6. It is even possible to get all pods on the specific node of the cluster
+   kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=<node>
+   
+#4 SERVICES
+1. What is the targetPort configured on the kubernetes service?
+   kubectl describe svc <svcname>
+2. How many Endpoints are attached on the kubernetes service?
+  kubectl get endpoints

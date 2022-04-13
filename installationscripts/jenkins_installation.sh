@@ -8,4 +8,4 @@ sudo apt-get update -y
 sudo apt-get install fontconfig openjdk-11-jre -y
 sudo apt-get install jenkins -y
 sudo systemctl start jenkins
-cat /var/lib/jenkins/secrets/initalAdminPassword
+sudo cat /var/lib/jenkins/secrets/initalAdminPassword

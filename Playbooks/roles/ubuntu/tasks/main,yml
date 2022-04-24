@@ -1,0 +1,9 @@
+- name: copy the index file 
+  tags: index,httpd,apache2,apache2
+  copy:
+    src: my_index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 644
+  notify: restart_server

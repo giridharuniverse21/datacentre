@@ -1,0 +1,15 @@
+---
+- name: installing the apache server on different "OS"
+  hosts: all
+  become: yes
+  tasks: 
+  - name: install the apache server on diff "OS"
+    package:
+      name:
+        - "{{ apache_package }}"
+      state: present
+      update_cache: yes
+    service: 
+      name: 
+        -  "{{ apache_package }}"
+      state: started

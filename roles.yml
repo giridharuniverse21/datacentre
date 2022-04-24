@@ -1,0 +1,9 @@
+---
+- name: installing the apache2 server
+  hosts: all
+  become: yes
+  roles:
+    - amazon
+    - service
+    - ubuntu
+  

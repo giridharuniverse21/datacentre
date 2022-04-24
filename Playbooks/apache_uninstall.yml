@@ -1,0 +1,17 @@
+---
+- name: uninstall the package
+  hosts: all
+  become: yes
+  tasks:
+  - name: update the apt repo
+    apt:
+      update_cache: yes
+  - name: unintsall the apache2 server
+    apt:
+      name: apache2
+      state: absent
+      update_cache: yes
+  - name: Remove unwanted Apache2 packages from the system.
+    apt:
+      autoremove: yes
+      purge: yes

@@ -1,0 +1,29 @@
+---
+- name: installing the apache2 server
+  hosts: all
+  become: yes
+  tasks: 
+  - name: install a apache2 package
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"  
+  - name: start the apache2 server
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+    when: ansible_distribution == "Ubuntu" 
+  - name: install a httpd package
+    yum:
+      name: httpd
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "Amazon"  
+  - name: start the apache2 server
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Amazon" 

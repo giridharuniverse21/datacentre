@@ -1,0 +1,21 @@
+---
+- name: creating users in all servers and assigning sudo permissions
+  hosts: all
+  become: true
+  tasks:
+  - name: creating a users
+    user:
+      name: krishna
+      groups: root
+  - name: adding ssh key to the new user
+    authorized_key:
+      user: krishna
+      key: "OS"
+  - name: adding user to sudoers.d file
+    copy:
+      src: krishna_sudoers
+      dest: /etc/sudoers.d/krishna
+      owner: root
+      group: root 
+      mode: 440
+  
